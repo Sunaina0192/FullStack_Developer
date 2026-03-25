@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Flappy Bird</title>
+
+<style>
+
+body{
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#70c5ce;
+font-family:Arial;
+flex-direction:column;
+}
+
+canvas{
+background:#87CEEB;
+border:3px solid black;
+}
+
+#score{
+position:absolute;
+top:20px;
+font-size:28px;
+font-weight:bold;
+}
+
+#startScreen{
+position:absolute;
+text-align:center;
+font-size:30px;
+background:rgba(0,0,0,0.6);
+color:white;
+padding:20px;
+border-radius:10px;
+}
+
+button{
+padding:10px 20px;
+font-size:18px;
+margin-top:10px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="score">Score: 0 | High Score: 0</div>
+
+<div id="startScreen">
+Flappy Bird<br>
+<button onclick="startGame()">Start Game</button>
+</div>
+
+<canvas id="game" width="400" height="500"></canvas>
+
+<script>
+
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+let bird;
+let pipes;
+let score;
+let speed;
+let gameRunning=false;
+
+let highScore = localStorage.getItem("highScore") || 0;
+
+function resetGame(){
+
+bird = {
+x:80,
+y:200,
+width:30,
+height:30,
+gravity:0.6,
+lift:-10,
+velocity:0
+};
+
+pipes=[];
+score=0;
+speed=2;
+
+updateScore();
+
+}
+
+function startGame(){
+document.getElementById("startScreen").style.display="none";
+resetGame();
+gameRunning=true;
+}
+
+function createPipe(){
+
+let gap = 130;
+let topHeight = Math.random()*250+50;
+
+pipes.push({
+x:canvas.width,
+width:50,
+top:topHeight,
+bottom:canvas.height-topHeight-gap,
+passed:false
+});
+
+}
+
+setInterval(()=>{
+if(gameRunning) createPipe();
+},2000);
+
+function jump(){
+if(gameRunning){
+bird.velocity = bird.lift;
+}
+}
+
+document.addEventListener("keydown",jump);
+document.addEventListener("touchstart",jump);
+
+function updateScore(){
+
+document.getElementById("score").innerText =
+"Score: "+score+" | High Score: "+highScore;
+
+}
+
+function gameOver(){
+
+gameRunning=false;
+
+if(score>highScore){
+highScore=score;
+localStorage.setItem("highScore",highScore);
+}
+
+setTimeout(()=>{
+document.getElementById("startScreen").innerHTML=
+"Game Over<br>Score: "+score+
+"<br><button onclick='startGame()'>Restart</button>";
+document.getElementById("startScreen").style.display="block";
+},500);
+
+}
+
+function update(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+if(gameRunning){
+
+bird.velocity += bird.gravity;
+bird.y += bird.velocity;
+
+if(bird.y + bird.height > canvas.height){
+gameOver();
+}
+
+ctx.fillStyle="yellow";
+ctx.fillRect(bird.x,bird.y,bird.width,bird.height);
+
+pipes.forEach((pipe)=>{
+
+pipe.x -= speed;
+
+ctx.fillStyle="green";
+
+ctx.fillRect(pipe.x,0,pipe.width,pipe.top);
+
+ctx.fillRect(
+pipe.x,
+canvas.height-pipe.bottom,
+pipe.width,
+pipe.bottom
+);
+
+if(
+bird.x < pipe.x + pipe.width &&
+bird.x + bird.width > pipe.x &&
+(bird.y < pipe.top ||
+bird.y + bird.height > canvas.height-pipe.bottom)
+){
+gameOver();
+}
+
+if(pipe.x + pipe.width < bird.x && !pipe.passed){
+
+pipe.passed=true;
+score++;
+
+if(score % 5 === 0){
+speed += 0.5;
+}
+
+updateScore();
+}
+
+});
+
+}
+
+requestAnimationFrame(update);
+
+}
+
+resetGame();
+update();
+
+</script>
+
+</body>
+</html>

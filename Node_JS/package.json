@@ -1,0 +1,26 @@
+{
+  "name": "fullstack_developer",
+  "version": "1.0.0",
+  "description": "This repository contains my full stack development projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sunaina0192/FullStack_Developer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Sunaina0192/FullStack_Developer/issues"
+  },
+  "homepage": "https://github.com/Sunaina0192/FullStack_Developer#readme",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.10"
+  }
+}

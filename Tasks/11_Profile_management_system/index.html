@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Profile Management System</h1>
+    <button onclick="getData()">GEt Data</button>
+     <p id="output"></p>
+    <button onclick="showForm()">Create User</button>
+    <div id="formBox" style="display:none ; margin-top: 20px;">
+        <input type="text" id="name" placeholder="Enter Name"><br> <br>
+        <input type="text" id="city" placeholder="Enter City"><br> <br>
+        <input type="text" id="role" placeholder="What is the role "><br><br>
+       <button type="button" onclick="createUser()">Submit</button>
+    </div>
+    <p id="msg"></p>
+
+
+    <button onclick="loadUserToForm()">Edit User</button>
+    <div id="formBoxx" style="display:none ; margin-top: 20px;">
+        <input type="text" id="editName" placeholder="Enter Name"><br> <br>
+        <input type="text" id="editCity" placeholder="Enter City"><br> <br>
+        <input type="text" id="editRole" placeholder="What is the role "><br><br>
+        <button type="button" onclick="handleSubmit()">Update User</button>
+    </div>
+    <p id="message"></p>
+
+    <button onclick="showPatchForm()">Update Data</button>
+     <div id="patchForm" style="display:none ; margin-top: 20px;">
+        <input type="text" id="editName" placeholder="Enter Name"><br> <br>
+        <input type="text" id="editCity" placeholder="Enter City"><br> <br>
+        <input type="text" id="editRole" placeholder="What is the role "><br><br>
+        <button type="button" onclick="patchUser()">Update User</button>
+    </div>
+    <p id="msg"></p>
+   
+    <script src="script.js"></script>
+</body>
+</html>

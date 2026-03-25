@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unique Data Tracker & ID Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 30px;
+    }
+    h2 {
+      color: #222;
+    }
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 15px;
+      border: none;
+      background: #0078d4;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    #output {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      min-height: 100px;
+    }
+    .message {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .green { color: green; }
+    .red { color: red; }
+    .black { color: #000; }
+  </style>
+</head>
+<body>
+  <h2>Unique Data Tracker & ID Generator System</h2>
+
+  <input type="text" id="username" placeholder="Enter username/email">
+  <button onclick="addUser()">Add User</button>
+  <button onclick="updateUser()">Update User Data</button>
+  <button onclick="showAll()">Show All Users</button>
+  <button onclick="resetAll()">Reset System</button>
+  
+  <div id="output"></div>
+
+  <script>
+    const userSet = new Set();
+    const userMap = new Map();
+
+    function* idGenerator() {
+      let id = 1;
+      while (true) {
+        yield "U" + String(id).padStart(3, '0');
+        id++;
+      }
+    }
+    let generateID = idGenerator();
+
+    function printMessage(text, color = "black") {
+      const output = document.getElementById("output");
+      const msg = document.createElement("div");
+      msg.classList.add("message", color);
+      msg.textContent = text;
+      output.prepend(msg); // show latest message at top
+    }
+
+    function showUserData() {
+      const output = document.getElementById("output");
+      const dataDiv = document.createElement("div");
+      dataDiv.classList.add("black");
+      dataDiv.textContent = "📋 Current Users:\n";
+      for (const [name, data] of userMap.entries()) {
+        dataDiv.textContent += `${data.id} | ${name} → Score: ${data.score}, Level: ${data.level}\n`;
+      }
+      output.appendChild(dataDiv);
+    }
+
+    function addUser() {
+      const name = document.getElementById("username").value.trim();
+      if (!name) return printMessage("⚠️ Please enter a valid name!", "red");
+
+      if (userSet.has(name)) {
+        printMessage("❌ User already exists!", "red");
+        return;
+      }
+
+      const id = generateID.next().value;
+      userSet.add(name);
+      userMap.set(name, { id, score: 0, level: 1 });
+
+      printMessage(`✅ ${name} added with ID: ${id}`, "green");
+      showUserData();
+      document.getElementById("username").value = "";
+    }
+
+    function updateUser() {
+      const name = document.getElementById("username").value.trim();
+      if (!userSet.has(name)) {
+        printMessage("⚠️ User not found!", "red");
+        return;
+      }
+
+      const data = userMap.get(name);
+      data.score += 10;
+      data.level++;
+      userMap.set(name, data);
+
+      printMessage(`📝 ${name}'s data updated!`, "green");
+      showUserData();
+    }
+
+    function showAll() {
+      if (userMap.size === 0) {
+        printMessage("No users found!", "red");
+        return;
+      }
+      printMessage("📊 Displaying all users:", "black");
+      showUserData();
+    }
+
+    function resetAll() {
+      userSet.clear();
+      userMap.clear();
+      generateID = idGenerator();
+      document.getElementById("output").innerHTML = "";
+      printMessage("🔁 System reset! IDs start again from U001.", "green");
+    }
+  </script>
+</body>
+</html>
