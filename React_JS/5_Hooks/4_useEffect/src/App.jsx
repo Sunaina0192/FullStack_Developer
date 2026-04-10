@@ -1,33 +1,44 @@
 // useEffect = api call krna ,dom manupilation Side effect krne ke liye use hoti hai useEffect
 // 1. useEffect -har baar state chalne pe useEffect chale (Mounting)
 // if we pass an dependences then component did mount for a  once
+// useEffect(() => {
+//   console.log("Sirf ek baar chalega");
+// }, []);
+
+// 👉 Ye exactly same hai:
+// "component load hote hi ek baar run karo"
+// 👉 useEffect component ke render hone ke baad chalta hai
+
+// 🔥 Simple samajh:
+// Component render hota hai (UI screen pe aata hai)
+// Uske baad 👉 useEffect run hota hai
 
 
+import React, { useEffect, useState } from 'react'
 
-// import React, { useEffect, useState } from 'react'
+const App = () => {
 
-// const App = () => {
-
-//     const [num, setNum] = useState(0);
-//     const [number, setNumber] = useState(100);
+    const [num, setNum] = useState(0);
+    const [number, setNumber] = useState(100);
 
 
-//     useEffect(function(){
-//         console.log('use Effect is running...')
-//     },[num])
-//   return (
-//     <div>
-//         <h2>num{num}</h2>
-//         <h2>number{number}</h2>
-//       <button onClick={()=>{
-//         setNum(num+1)
-//         setNumber(number+10);
-//       }}>Click</button>
-//     </div>
-//   )
-// }
+    useEffect(function(){
+        console.log('use Effect is running...')
+    },[num])
 
-// export default App
+  return (
+    <div>
+        <h2>num{num}</h2>
+        <h2>number{number}</h2>
+      <button onClick={()=>{
+        setNum(num+1)
+        setNumber(number+10);
+      }}>Click</button>
+    </div>
+  )
+}
+
+export default App
 
 
 
@@ -38,34 +49,56 @@
 
 
 // ========================
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
 
-const App = () => {
+// const App = () => {
 
-   const [a,setA] =useState(0);
-   const [b,setB] =useState(0);
+//    const [a,setA] =useState(0);
+//    const [b,setB] =useState(0);
 
-    function aChanging(){
-        console.log("A is changing...")
-    }
+//     function aChanging(){
+//         console.log("A is changing...")
+//     }
 
-    function bChanging(){
-        console.log("B is changing...")
-    }
+//     function bChanging(){
+//         console.log("B is changing...")
+//     }
 
-    useEffect(function(){
-        aChanging();
-        console.log("useEffect is running...")
-    },[a])
-  return (
-    <div>
-        <h1>A is {a}</h1>
-        <h1>B is {b}</h1>
-      <button onClick={()=>{setA(a+1)}}>Change A</button>
-      <button onClick={()=>{setB(b-1)}}>Change B</button>
-    </div>
-  )
-}
+//     useEffect(function(){
+//         aChanging();
+//         console.log("useEffect is running...")
+//     },[a])
+//   return (
+//     <div>
+//         <h1>A is {a}</h1>
+//         <h1>B is {b}</h1>
+//       <button onClick={()=>{setA(a+1)}}>Change A</button>
+//       <button onClick={()=>{setB(b-1)}}>Change B</button>
+//     </div>
+//   )
+// }
 
-export default App
+// export default App
 
+
+
+// ===============================practice========================
+// import React, { useEffect } from 'react'
+
+// const App = () => {
+
+//   useEffect(function(){
+//     console.log("useEffect chal giya")
+//   })
+//   return (
+//     <div>
+      
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+ 

@@ -4,13 +4,11 @@ import Home from './components/Home'
 import Nav from './components/Nav'
 
 function App() {
-
   return (
     <div>
-      <Nav/>
-      <About/>
-      <Home/>
-  
+      <Nav />
+      <Home />
+      <About />
     </div>
   )
 }

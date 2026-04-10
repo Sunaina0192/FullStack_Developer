@@ -15,7 +15,7 @@
         delete arr[1];
         document.getElementById("demo").innerHTML=arr + "<br>Seat 2 is now empty:" + arr[1];
 
-
+ 
         // 2.-------------------------------concat()-------------------------
         // joins two or more array into a new one (merging)
         const girls=["anita","sunita"];
@@ -64,6 +64,7 @@
         document.getElementById("demo").innerHTML=numbers;
         
         // 10.-------------------------at()-----------------------------
+        // “The .at() method is used to access array elements by index, and it also supports negative indexing to access elements from the end.”
         // The at() method returns the element at a specific index in an array. 
         // It supports both positive (from start) and negative (from end) indexes.
         const numm=[10,20,30,40,50];
@@ -103,6 +104,10 @@
 
         // 15.--------------------------splice()---------------------------
         // iska kaam hai remove,add,ja replace krna 
+        // array.splice(start, deleteCount, newItems)
+        // start → kaha se start kare
+        // deleteCount → kitne elements delete kare
+        // newItems → kya add karna hai
         const fruit =["apple","mango","orange","grapes"];
         fruit.splice(1,0,"gauava"); //adding
         document.getElementById("demo").innerHTML = fruit;
@@ -241,7 +246,7 @@
         const bonusMarks=marks.map(m => m+10);
         document.getElementById("demo").innerHTML="original marks :"+marks +"<br> bonous marks: "+bonusMarks;
          
-        // 35.--------------------------filer()---------------------------
+        // 35.--------------------------filter()---------------------------
         // filter() ek array method hai jo har element par ek test (condition) chalata hai aur sirf un elements ko return karta hai jo test pass karte hain.
         const markss=[40,50,60,70,80,90,100];
         let filter=markss.filter(m => m>60);
@@ -292,6 +297,7 @@
         // Rest (...) operator multiple values ko collect karke ek single array ya object me store karta hai.
         // Simple line me:
         // Spread cheezein todta hai, Rest cheezein jodta hai.
+        // 👉 “Spread operator is used to expand elements, while rest operator is used to collect multiple elements into a single variable.”
         const arrr=[1,2,3,4,5];
         const [a, ...rest]=arrr;
         document.getElementById("demo").innerHTML="first :" + a +"<br>Rest : " + arrr;

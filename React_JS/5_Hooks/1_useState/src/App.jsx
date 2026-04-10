@@ -66,25 +66,44 @@
 
 
 // =====================================Ref array===================================
-import React, { use, useState } from 'react'
+// import React, { use, useState } from 'react'
 
-const App = () => {
+// const App = () => {
 
-  const [num, setNum] = useState([10,20,30,40]);
-  function array(){
-    const newArray= [...num];
-    newArray.push(222);
-    setNum(newArray);
-  }
-  return (
-    <div>
-      <h1>{num}</h1>
-      <button onClick={array}>clicked</button>
-    </div>
-  )
-}
+//   const [num, setNum] = useState([10,20,30,40]);
+//   function array(){
+//     const newArray= [...num];
+//     newArray.push(222);
+//     setNum(newArray);
+//   }
+//   return (
+//     <div>
+//       <h1>{num}</h1>
+//       <button onClick={array}>clicked</button>
+//     </div>
+//   )
+// }
 
-export default App
+// export default App
+
+
+// ============================practise======================
+// import React, { useState } from 'react'
+
+// const App = () => {
+//   const [count, setCount] = useState(0);
+//   console.log('Component Render , Count is: ',count);
+//   return (
+//     <div>
+//       <button onClick={()=>{
+//         setCount(count+10);
+//       }}>Click</button>
+//     </div>
+//   )
+// }
+
+// export default App
+
 
 
 
