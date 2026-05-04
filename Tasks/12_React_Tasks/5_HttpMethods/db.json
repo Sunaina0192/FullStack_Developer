@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Manish",
+      "age": 25,
+      "role": "Developer"
+    },
+    {
+      "id": "H2iglrrEKjM",
+      "name": "Test",
+      "age": 30,
+      "role": "QA"
+    },
+    {
+      "id": "nn8DOrZbxYo",
+      "name": "Test",
+      "age": 25,
+      "role": "Dev"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
