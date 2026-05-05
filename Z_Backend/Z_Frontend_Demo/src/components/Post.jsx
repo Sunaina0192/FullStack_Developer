@@ -21,7 +21,7 @@ const Post = () => {
                 alert(`Message: ${data.message}\n Age:${data.age}\n Password:${data.password}`);
             })
         }
-    
+     
   return (
     <div>
       <h2>Post</h2>

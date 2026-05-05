@@ -4,7 +4,11 @@ import React from 'react'
 // import Post from './components/Post'
 // import Put from './components/Put'
 // import Delete from './components/Delete'
-import Patch from './components/Patch'
+// import Patch from './components/Patch'
+import Navbar from './components/ContextAPI/Navbar'
+import Profile from './components/ContextAPI/Profile'
+import Dashboard from './components/ContextAPI/Dashboard'
+
 
 const App = () => {
   return (
@@ -14,7 +18,12 @@ const App = () => {
       {/* <Post/> */}
       {/* <Put/> */}
       {/* <Delete/> */}
-      <Patch/>
+      {/* <Patch/> */}
+    <Navbar/>
+    <Profile/>
+    <Dashboard/>
+
+
 
     </div>
   )

@@ -24,9 +24,9 @@ app.get("api/user",(req,res)=>{
     console.log("Post Request Received");
     console.log("recieved Data:",req.body);
 
-    user={id:Data.now(), ...req.body};
+    user={id:Date.now(), ...req.body};
     res.json({
-        message:"USer created",
+        message:"User created",
         user,
     }); 
   });
